@@ -1,23 +1,27 @@
 package com.rit.algos;
 
+
+
 public class TreeNode {
 	private Object info;
 	private TreeNode left;
 	private TreeNode right;
-	private int count;
+	private static int count=0;
+	private boolean color;
 
 	TreeNode() {
 		
 		left = null;
 		right = null;
-		count = 0;
+		//count = 0;
 	}
 
-	public TreeNode(Object e) {
+	public TreeNode(Object e,boolean color) {
 		info = e;
 		left = null;
 		right = null;
-		count = 0;
+		count = count+1;
+		this.color = color;
 	}
 
 	public int getCount() {
@@ -37,6 +41,8 @@ public class TreeNode {
 	}
 
 	public TreeNode getLeft() {
+		if(left ==null)
+			return null;
 		return left;
 	}
 
@@ -45,11 +51,21 @@ public class TreeNode {
 	}
 
 	public TreeNode getRight() {
+		if(right==null)
+			return null;
+		
 		return right;
 	}
 
 	public void setRight(TreeNode right) {
 		this.right = right;
+	}
+
+	public boolean isColor() {
+		return color;
+	}
+	public void setColor(boolean color) {
+		this.color = color;
 	}
 
 }
