@@ -155,18 +155,18 @@ public class Test {
 	}
 
 	public void testIt() {
-		start();
+		/*start();
 		initArray();
 		(init(new TreeSet())).executeTest("TreeSet");
 		initArraySorted();
 		(init(new TreeSet())).executeTest("TreeSet");
-		end("TreeSet");
+		end("TreeSet");*/
 		
 		start();
 		initArray();
-		(init(new RedBlackTree())).executeTest("RedBlackTree");		
+		(init(new RedBlackTree())).executeTest("HpTreeSet");		
 		initArraySorted();
-		(init(new RedBlackTree())).executeTest("RedBlackTree");
+		(init(new RedBlackTree())).executeTest("HpTreeSet");
 		end("RedBlackTree");
 	}
 

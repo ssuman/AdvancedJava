@@ -1,7 +1,22 @@
+/* 
+ * TreeNode.java 
+ * 
+ * Version: 
+ *     $Id$ 
+ * 
+ * Revisions: 
+ *     $Log$ 
+ */
 package com.rit.algos;
 
 
-
+/**
+ * This represents a node in the tree
+ * 
+ * 
+ * @author      Suman
+ * @author      Kanth
+ */
 public class TreeNode {
 	private Object info;
 	private TreeNode left;
@@ -13,7 +28,7 @@ public class TreeNode {
 		
 		left = null;
 		right = null;
-		//count = 0;
+		
 	}
 
 	public TreeNode(Object e,boolean color) {

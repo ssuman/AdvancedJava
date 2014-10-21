@@ -1,7 +1,22 @@
+/* 
+ * TreeIterator.java 
+ * 
+ * Version: 
+ *     $Id$ 
+ * 
+ * Revisions: 
+ *     $Log$ 
+ */
 package com.rit.algos;
 
 import java.util.Iterator;
 
+/**
+ * This program Implements an Iterator 
+ * 
+ * @author      Suman
+ * @author      Kanth
+ */
 public class TreeIterator implements Iterator<Object>{
 	
 	Object myArray [];
@@ -19,6 +34,11 @@ public class TreeIterator implements Iterator<Object>{
 		inOrder(node);
 	}
 	
+	/***
+	 * In order traversal will be performed
+	 * 
+	 * @param node
+	 */
 	private void inOrder(TreeNode node) {
 		if (node == null) {
 			return;
@@ -28,10 +48,14 @@ public class TreeIterator implements Iterator<Object>{
 		inOrder(node.getRight());
 	}
 	
+	/***
+	 * has next if cursor is equal to size will return false
+	 */
 	@Override
 	public boolean hasNext() {
 		return cursor != SIZE;
 	}
+	
 	
 	@Override
 	public Object next() {
@@ -39,8 +63,6 @@ public class TreeIterator implements Iterator<Object>{
 	}
 	@Override
 	public void remove() {
-		
-		
 	}
 
 	/**
