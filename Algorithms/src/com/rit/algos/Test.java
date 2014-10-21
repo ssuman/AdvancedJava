@@ -164,10 +164,10 @@ public class Test {
 		
 		start();
 		initArray();
-		(init(new BalancedSearchTree())).executeTest("BalancedSearchTree");		
+		(init(new RedBlackTree())).executeTest("RedBlackTree");		
 		initArraySorted();
-		(init(new BalancedSearchTree())).executeTest("BalancedSearchTree");
-		end("BalancedSearchTree");
+		(init(new RedBlackTree())).executeTest("RedBlackTree");
+		end("RedBlackTree");
 	}
 
 	public static void main(String args[]) {

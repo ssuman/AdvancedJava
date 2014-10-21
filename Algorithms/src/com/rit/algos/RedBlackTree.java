@@ -57,8 +57,12 @@ public class RedBlackTree extends TreeSet {
 		
 	}
 	public Iterator<Object> iterator() {
-		inOrder(root);
-		return qu.iterator();
+		//inOrder(root);
+		//return qu.iterator();
+		if(root==null)
+			return new TreeIterator(root,0);
+		
+		return new TreeIterator(root,root.getCount());
 	}
 
 	private void inOrder(TreeNode node) {
@@ -148,22 +152,23 @@ public class RedBlackTree extends TreeSet {
 	public static void main(String[] args) {
 		RedBlackTree bst = new RedBlackTree();
 		long start = System.currentTimeMillis();
-		for (int i = 0; i < 3000000; i++) {
-			Random rn = new Random();
-			int random = rn.nextInt(50000000);
-			bst.add(new String("" + random));
+		for (int i = 0; i < 30; i++) {
+			bst.add(new String("" + i));
 
+		}
+		Iterator it = bst.iterator();
+		
+		while(it.hasNext()){
+			System.out.println(it.next().toString());
 		}
 		
 		for (int i = 0; i < 30; i++) {
-			Random rn = new Random();
-			int random = rn.nextInt(50000000);
-			bst.contains(new String(""+random));
+			bst.contains(new String(""+i));
 
 		}
 		long end = System.currentTimeMillis();
 
-		System.out.println(end - start);
+		//System.out.println(end - start);
 	}
 
 }
