@@ -3,6 +3,7 @@ package com.rit.practice.multithreading;
 public class SynchronizedTest extends Thread {
 
 	private Counter counter;
+	//private volatile int arr[] = new ar
 
 	public SynchronizedTest(Counter cnt) {
 		this.counter = cnt;
@@ -22,7 +23,6 @@ public class SynchronizedTest extends Thread {
 		B.start();
 
 		//counter.add();
-		
 		//A.join();
 		//B.join();
 
