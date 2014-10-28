@@ -7,9 +7,9 @@ public class DoubleIntegralThread extends Thread {
 	private final float X_MIN_SIZE = -1;
 	private final float Y_MIN_SIZE = -2;
 
-	private static float area = 0.0f;
+	private float area = 0.0f;
 
-	private static float oldArea = 0.0f;
+	private float oldArea = 0.0f;
 
 	private DoubleIntegral dbi;
 
@@ -25,30 +25,37 @@ public class DoubleIntegralThread extends Thread {
 		this.dbi = dbi;
 	}
 
-	public void loopThrough() {
-		float delta =0.090f;
-
-		while (Math.abs(oldArea - area) < 0.01) {
-			for (float i = X_MIN_SIZE; i < X_MAX_SIZE; i = i + delta) {
-				for (float j = Y_MIN_SIZE; j < Y_MAX_SIZE; j = j + delta) {
-					// synchronized (dbi) {
-					oldArea = area;
-					area += dbi.compute(i, j) * delta * delta;
-					// }
-				}
+	public float loopThrough(float delta) {
+		area=0.0f;
+		for (float i = X_MIN_SIZE; i < X_MAX_SIZE; i = i + delta) {
+			for (float j = Y_MIN_SIZE; j < Y_MAX_SIZE; j = j + delta) {
+				area+= dbi.compute(i, j) * delta * delta;
 			}
 		}
+		
+		return area;
+
 	}
 
 	@Override
 	public void run() {
-		loopThrough();
+		synchronized (dbi) {
+			//loopThrough();
+		}
 	}
 
 	public static void main(String[] args) throws InterruptedException {
 		DoubleIntegral dbi = new DoubleIntegral();
 		DoubleIntegralThread dbir = new DoubleIntegralThread(dbi);
-		dbir.loopThrough();
+		float oldArea = 0.0f;
+		float area = 0.0f;
+		float delta = 0.1f;
+		do {
+			oldArea = area;
+			area = dbir.loopThrough(delta);
+			delta = delta - 0.01f;
+		} while (Math.abs(oldArea - area) > 0.001);
+		// Thread.currentThread().join();
 		/*
 		 * DoubleIntegralThread dbi_array[] = new DoubleIntegralThread[200] ;
 		 * for (int i = 0; i < 200; i++) { dbi_array[i]=new
@@ -59,7 +66,7 @@ public class DoubleIntegralThread extends Thread {
 		 * for(int i=0;i<200;i++){ dbi_array[i].join(); }
 		 */
 
-		System.out.println(DoubleIntegralThread.area);
+		System.out.println(dbir.getArea());
 
 	}
 }
