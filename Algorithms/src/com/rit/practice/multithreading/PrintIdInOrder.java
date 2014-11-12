@@ -1,9 +1,27 @@
 package com.rit.practice.multithreading;
 
+/* 
+ * PrintIdInOrder.java 
+ * 
+ * Version: 
+ *     $Id$ 
+ * 
+ * Revisions: 
+ *     $Log$ 
+ */
+/**
+ * This program prints in order a, b and c
+ * 
+ * @author Kanth
+ * @author Suman
+ */
 public class PrintIdInOrder extends Thread {
 
 	String id;
+	// Lock on this obect
 	private static Object obj = new Object();
+	
+	// These boolean variables will be used to print in order
 	private static boolean print1 = true;
 	private static boolean print2 = false;
 	private static boolean print3 = false;
@@ -24,9 +42,8 @@ public class PrintIdInOrder extends Thread {
 						// If print1 is false
 						// make it wait. Before that notify other threads
 						if (!print1) {
-							try {
+							try {					
 								obj.notify();
-								// System.out.println("hi 1");
 								sleep(1000);
 								obj.wait();
 							} catch (InterruptedException e) {
@@ -40,17 +57,24 @@ public class PrintIdInOrder extends Thread {
 							print2 = true;
 							obj.wait();
 						}
-					} else if (id.equals("b")) {
+						
+					} 
+					// If the id is equal to "b".
+					else if (id.equals("b")) {
+						
+						// If print is false
+						// make it wait. Before that notify other threads.
 						if (!print2) {
 							try {
 								obj.notify();
-								// System.out.println("hi 2");
 								sleep(1000);
 								obj.wait();
 							} catch (InterruptedException e) {
 
 							}
-						} else {
+						} 
+						// else print id
+						else {
 							System.out.print(id + " ");
 							sleep(1000);
 							obj.notify();
@@ -58,20 +82,25 @@ public class PrintIdInOrder extends Thread {
 							print3 = true;
 							obj.wait();
 						}
-					} else {
+					} 
+					// If the id is equal to "c"
+					else {
+						// If print3 is false.
+						// notify and wait.
 						if (!print3) {
 							try {
 								obj.notify();
-								// System.out.println("hi 3");
 								sleep(1000);
 								obj.wait();
 							} catch (InterruptedException e) {
 								e.printStackTrace();
 							}
-						} else {
+						} 
+						// else print Id and print1 true.
+						else {
 							System.out.print(id + " ");
 							sleep(1000);
-							obj.notifyAll();
+							obj.notify();
 							print3 = false;
 							print1 = true;
 							obj.wait();
@@ -84,6 +113,11 @@ public class PrintIdInOrder extends Thread {
 		}
 	}
 
+	/***
+	 * This is where execution begins.
+	 * 
+	 * @param 		args		
+	 */
 	public static void main(String[] args) {
 		PrintIdInOrder thread1 = new PrintIdInOrder("a");
 		PrintIdInOrder thread2 = new PrintIdInOrder("b");
