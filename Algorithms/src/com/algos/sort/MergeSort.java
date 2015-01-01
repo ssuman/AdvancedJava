@@ -1,10 +1,10 @@
-package com.rit.algos;
+package com.algos.sort;
 
-public class MergeSortWithoutSentinels {
+public class MergeSort {
 
 	public static void main(String[] args) {
 
-		int arr[] = { 3,41,52,26,38,9,57,49 };
+		int arr[] = { 3,41,52,26,38,57,9,49 };
 		for(int i=0;i<arr.length;i++)
 			System.out.print(arr[i]+" ");
 		
@@ -27,8 +27,8 @@ public class MergeSortWithoutSentinels {
 		int leftNbr = mid - low +1;
 		int rightNbr = high - mid ;
 		
-		int left [] = new int [leftNbr];
-		int right [] = new int [rightNbr];
+		int left [] = new int [leftNbr+1];
+		int right [] = new int [rightNbr+1];
 		
 		for(int i=low,j=0;i<=mid;i++,j++){
 			left[j]=arr[i];
@@ -38,23 +38,13 @@ public class MergeSortWithoutSentinels {
 			right[j]=arr[i];
 		}
 		
+		left[leftNbr]=999;
+		right[rightNbr]=999;
+		
 		int i=0;
 		int j=0;
-		
-		
-		
 		for(int iter=low;iter<=high;iter++){
-			
-			if(i == leftNbr){
-				arr[iter]=right[j];
-				j++;
-			}
-			else if(j==rightNbr){
-				arr[iter]=left[i];
-				i++;
-			}
-			
-			else if(left[i]<=right[j]){
+			if(left[i]<=right[j]){
 				arr[iter]=left[i];
 				i++;
 			}
