@@ -6,8 +6,8 @@ public class Reordering implements Runnable {
 	private boolean ready = false;
 	
 	public void writer(){
-		x=6;
 		ready=true;
+		x=6;
 	}
 	
 	public void reader(){
